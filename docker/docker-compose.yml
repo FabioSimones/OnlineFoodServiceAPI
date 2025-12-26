@@ -1,0 +1,10 @@
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_USER=food
+      - MYSQL_PASSWORD=secret
+      - MYSQL_DATABASE=foodonline
+      - MYSQL_ROOT_PASSWORD=123
+    ports:
+      - "33006:3306"
