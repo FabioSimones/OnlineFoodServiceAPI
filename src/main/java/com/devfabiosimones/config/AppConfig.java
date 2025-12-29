@@ -34,7 +34,7 @@ public class AppConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
-        return null;
+        return httpSecurity.build();
     }
 
     private CorsConfigurationSource corsConfigurationSource() {
@@ -44,7 +44,8 @@ public class AppConfig {
                 CorsConfiguration cfg = new CorsConfiguration();
 
                 cfg.setAllowedOrigins(Arrays.asList(
-                        "http://localhost:3000"
+                        "http://localhost:3000",
+                        "http://localhost:8080"
                 ));
                 cfg.setAllowedMethods(Collections.singletonList("*"));
                 cfg.setAllowCredentials(true);
