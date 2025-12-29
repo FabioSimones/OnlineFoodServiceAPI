@@ -1,4 +1,4 @@
-package model;
+package com.devfabiosimones.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class IngredientsItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,9 +18,12 @@ public class Category {
 
     private String name;
 
+    @ManyToOne
+    private IngredientCategory category;
+
     @JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
 
-
+    private boolean isStoke = true;
 }

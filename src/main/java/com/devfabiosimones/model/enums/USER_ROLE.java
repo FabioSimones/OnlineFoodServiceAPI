@@ -1,4 +1,4 @@
-package model.enums;
+package com.devfabiosimones.model.enums;
 
 public enum USER_ROLE {
     ROLE_CUSTOMER,

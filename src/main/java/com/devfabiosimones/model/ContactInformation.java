@@ -1,4 +1,4 @@
-package model;
+package com.devfabiosimones.model;
 
 import lombok.Data;
 

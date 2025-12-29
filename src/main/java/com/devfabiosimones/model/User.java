@@ -1,10 +1,10 @@
-package model;
+package com.devfabiosimones.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dto.RestaurantDto;
+import com.devfabiosimones.dto.RestaurantDto;
 import jakarta.persistence.*;
 import lombok.*;
-import model.enums.USER_ROLE;
+import com.devfabiosimones.model.enums.USER_ROLE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class User {
 
     private String password;
 
-    private USER_ROLE user;
+    private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")

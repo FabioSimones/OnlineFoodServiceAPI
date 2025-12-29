@@ -1,33 +1,30 @@
-package model;
+package com.devfabiosimones.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
 
-@Data
 @Entity
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartItem {
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @JsonIgnore
-    @ManyToOne
-    private Cart cart;
 
     @ManyToOne
     private Food food;
 
     private int quantity;
 
+    private Long totalPrice;
+
     private List<String> ingredients;
 
-    private Long totalPrice;
+
 }
