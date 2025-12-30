@@ -40,8 +40,6 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurantRepository.save(restaurant);
     }
 
-
-
     @Override
     public Restaurant updateRestaurant(Long restaurantId, CreateRestaurantRequest updatedRestaurant) throws Exception {
         Restaurant restaurant = findRestaurantById(restaurantId);
@@ -103,11 +101,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         dto.setTitle(restaurant.getName());
         dto.setId(restaurantId);
 
-        if(user.getFavorites().contains(dto)){
-            user.getFavorites().remove(dto);
-        }else{
-            user.getFavorites().add(dto);
-        }
+        checkFavoriteRestaurant(restaurantId, user, dto);
 
         userRepository.save(user);
         return dto;
@@ -128,10 +122,28 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurant.setCuisineType(req.getCuisineType());
         restaurant.setDescription(req.getDescription());
         restaurant.setImages(req.getImages());
-        restaurant.setName(restaurant.getName());
+        restaurant.setName(req.getName());
         restaurant.setOpeningHours(req.getOpeningHours());
         restaurant.setRegistrationDate(LocalDateTime.now());
         restaurant.setOwner(user);
         return restaurant;
     }
+
+    private static void checkFavoriteRestaurant(Long restaurantId, User user, RestaurantDto dto) {
+        boolean isFavorited = false;
+        List<RestaurantDto> favorites = user.getFavorites();
+        for (RestaurantDto favorite : favorites){
+            if(favorite.getId().equals(restaurantId)){
+                isFavorited = true;
+                break;
+            }
+        }
+
+        if(isFavorited){
+            favorites.removeIf(favorite -> favorite.getId().equals(restaurantId));
+        }else{
+            favorites.add(dto);
+        }
+    }
+
 }
