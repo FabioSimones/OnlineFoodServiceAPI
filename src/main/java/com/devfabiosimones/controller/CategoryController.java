@@ -40,6 +40,6 @@ public class CategoryController {
 
         List<Category> categories = categoryService.findCategoryByRestaurantId(user.getId());
 
-        return new ResponseEntity<>(categories, HttpStatus.CREATED);
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 }
